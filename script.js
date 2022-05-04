@@ -1,3 +1,4 @@
+
 // 게임에 참가 할 사람 수를 담는 변수
 const number = prompt('몇 명이 참가하나요?');
 // input값을 감지하기 위함
@@ -24,40 +25,6 @@ const orderNum__comfirm = (order)=>{
     }
 }
 
-// 버튼을 클릭하였을 때
-submitBtn.addEventListener('click', ()=> {
-    // 제시어가 없거나 현재 값이 맞을 때
-    if(!word || word[word.length-1] === newWord[0]){
-        // 입력한 내용을 현재 값에 담고 나타냄
-        word = newWord;
-        showText.innerHTML += `<div>제시어 : ${word}</div>`;
-        
-        // 게임에 참가하는 순서를 나타내는 함수
-        orderNum__comfirm(orderNum);
-        showText.scrollTo(0, showText.offsetHeight);
-    }else{
-        alert('올바른 단어가 아닙니다');
-    }
-});
-
-// input상자에서 enter를 눌렀을 때
-inputSelect.onkeyup = (e) =>{
-    if(e.keyCode == 13){
-        // 제시어가 없거나 현재 값이 맞을 때
-        if(!word || word[word.length-1] === newWord[0]){
-            // 입력한 내용을 현재 값에 담고 나타냄
-            word = newWord;
-            showText.innerHTML += `<div>제시어 : ${word}</div>`;
-            
-            // 게임에 참가하는 순서를 나타내는 함수
-            orderNum__comfirm(orderNum);
-            showText.scrollTo(0, showText.offsetHeight);
-        }else{
-            alert('올바른 단어가 아닙니다');
-        }
-    }
-}
-
 // input의 변화 값을 가져옴 
 inputSelect.addEventListener('change', (e)=>{
     // 변화 값을 새로운 변수에 담음
@@ -68,3 +35,45 @@ inputSelect.addEventListener('change', (e)=>{
     inputSelect.focus();
 })
 
+// 제시어를 비교하고 나타내는 함수
+const compareValue = () => {
+    // 제시어가 없거나 현재 값이 맞을 때
+    if(!word || (word[word.length-1] === newWord[0])){
+        // 입력한 내용을 현재 값에 담고 나타냄
+        word = newWord;
+        showText.innerHTML += `<div>제시어 : ${word}</div>`;
+        
+        // 게임에 참가하는 순서를 나타내는 함수
+        orderNum__comfirm(orderNum);
+        text.scrollTo(0, showText.offsetHeight);
+    }else{
+        alert('올바른 단어가 아닙니다');
+    }
+}
+
+// 버튼을 클릭하였을 때
+submitBtn.addEventListener('click', ()=> {
+    compareValue();
+});
+
+// input상자에서 enter를 눌렀을 때
+inputSelect.onkeyup = (e) =>{
+    if(e.keyCode == 13){
+        compareValue();
+    }
+}
+
+
+
+// // 제시어가 없거나 현재 값이 맞을 때
+        // if(!word || word[word.length-1] === newWord[0]){
+        //     // 입력한 내용을 현재 값에 담고 나타냄
+        //     word = newWord;
+        //     showText.innerHTML += `<div>제시어 : ${word}</div>`;
+            
+        //     // 게임에 참가하는 순서를 나타내는 함수
+        //     orderNum__comfirm(orderNum);
+        //     showText.scrollTo(0, showText.offsetHeight);
+        // }else{
+        //     alert('올바른 단어가 아닙니다');
+        // }
